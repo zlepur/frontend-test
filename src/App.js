@@ -3,7 +3,7 @@ import './App.css';
 
 const BLACK = '#000000';
 
-class App extends Component {
+export default class App extends Component {
   constructor() {
     super();
     this.state = {
