@@ -79,4 +79,4 @@ function TextInput(props) {
   );
 }
 
-export default App;
+export {App, RandomColor, BLACK, TextInput};
