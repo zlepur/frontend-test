@@ -4,11 +4,24 @@ import './App.css';
 const BLACK = '#000000';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      text: 'default',
+    }
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(event) {
+    this.setState({text: event.target.value});
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <RandomColor />
+          <RandomColor text={this.state.text}/>
+          <TextInput textChangedCallback={this.handleInputChange}/>
         </header>
       </div>
     );
@@ -16,8 +29,8 @@ class App extends Component {
 }
 
 class RandomColor extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       colors: [],
       currentColor: BLACK,
@@ -53,11 +66,17 @@ class RandomColor extends Component {
   render() {
     return (
       <div>
-        <div className="color-box" style={{backgroundColor: this.state.currentColor}}></div>
+        <label style={{color: this.state.currentColor}}>{this.props.text}</label>
         <button onClick={this.onToggleColorClick}>Toggle color</button>
       </div>
     );
   }
+}
+
+function TextInput(props) {
+  return (
+    <input type="text" onChange={props.textChangedCallback}></input>
+  );
 }
 
 export default App;
